@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  node-app-1:
+    user: root
+    restart: always
+    build:
+      context: .
+    ports:
+      - "5000-5050:5050"
+    volumes:
+      - ./images:/usr/src/app/images
+    depends_on:
+      - postgres
+    networks:
+      - google_image
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: google_image
+    ports:
+      - "5436:5432"
+    networks:
+      - google_image
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+networks:
+  google_image:
+    external: true

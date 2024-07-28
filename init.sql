@@ -1,0 +1,14 @@
+CREATE TABLE visited (
+    id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE unvisited (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE problem (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE
+);
